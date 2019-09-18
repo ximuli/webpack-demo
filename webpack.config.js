@@ -29,7 +29,20 @@ module.exports = {
   */
   module: {
     rules: [
-      { test: /.js$/, use: 'babel-loader' }
+      { test: /.js$/, use: 'babel-loader' },
+      /* 
+        css-loader 用于加载 .css 文件，并且转换成 commonjs 对象
+        style-loader 将样式通过 <style> 标签插入到 head 中
+        loader 的调用是链式调用，执行顺序是从右到左 ，因此我们这里是先写 style-loader 再写 css-loader ，
+        这样在解析的时候会先执行 css-loader ，然后把结果传递给 style-loader 去执行
+      */
+      {
+        test: /.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
     ]
   },
   /*
