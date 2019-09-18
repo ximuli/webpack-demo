@@ -93,7 +93,7 @@ npm i css-loader style-loader -D
 
 css-loader 用于加载 .css 文件并且转换成 commonjs 对象
 
-style-loader将样式通过 <style> 标签插入到 head 中
+style-loader将样式通过 `<style>` 标签插入到 head 中
 
 2. 在 webpack.config.js 中做配置
 
