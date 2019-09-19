@@ -285,7 +285,7 @@ ReactDOM.render(
   * 然后需要在 webpack.config.js 中做配置
   * 就可以直接使用了
 
-5. 同样的还可以使用 url-loader 来解析图片和字体，它会把小资源转换为 base64 格式
+5. 同样的还可以使用 url-loader 来解析图片和字体，做些额外配置它会自动把小资源转换为 base64 格式
 
 
 # 浏览器内核及其 CSS 前缀

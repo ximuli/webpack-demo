@@ -50,7 +50,24 @@ module.exports = {
           'css-loader',
           'less-loader'
         ]
-      }
+      },
+      /*
+        file-loader 和 url-loader 作用相似
+        url-loader 可以做些设置来自动将小资源转换为 base64 格式
+      */
+      // { test: /.(png|jpg|gif|jpeg)$/, use: 'file-loader' },
+      {
+        test: /.(png|jpg|gif|jpeg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240
+            }
+          }
+        ]
+      },
+      { test: /.(woff|woff2|eot|ttf|otf)$/, use: 'file-loader' }
     ]
   },
   /*
