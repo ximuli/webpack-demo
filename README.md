@@ -287,6 +287,43 @@ ReactDOM.render(
 
 5. 同样的还可以使用 url-loader 来解析图片和字体，做些额外配置它会自动把小资源转换为 base64 格式
 
+## webpack 中的文件监听
+
+文件监听是在源码发生变化时，自动重新构建出新的文件
+
+webpack 开启监听模式，有两种方式：
+* 启动 webpack 命令时，带上 --watch 参数
+* 在配置 webpack.config.js 中设置 watch: true
+
+唯一缺陷：每次需要手动刷新浏览器
+
+## webpack 中的热更新
+
+### webpack-dev-server
+
+```js
+npm i webpack-dev-server -D
+```
+
+主要依靠 webpack-dev-server ,再配合 webpack 自带的 HotModuleReplacementPlugin 插件
+
+WDS 不刷新浏览器
+
+WDS 不输出文件，而是放到内存中
+
+操作方法：
+
+1. 在 npm scripts 中添加一项： webpack-dev-server --open
+2. 在 webpack.config.js 中添加相关插件的配置
+
+### webpack-dev-middleware
+
+还有一种方式就是使用 webpack-dev-middleware
+
+WDM 将 webpack 输出的文件传输给服务器
+
+适用于灵活的定制场景
+
 
 # 浏览器内核及其 CSS 前缀
 

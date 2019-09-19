@@ -8,7 +8,7 @@ import saber from './images/saber.png';
 class Search extends React.Component {
   render() {
     return <div className="search-text">
-      Search Text!
+      Fate
       <div>
         <img src={saber} />
         我问你，你就是我的 master 吗？
