@@ -324,6 +324,29 @@ WDM 将 webpack 输出的文件传输给服务器
 
 适用于灵活的定制场景
 
+## 文件指纹
+
+### 文件指纹如何生成
+
+Hash：和整个项目的构建有关，只有项目文件有修改，整个项目构建的 hash 值就会更改
+
+Chunkhash： 和 webpack 打包的 chunk 有关，不同的 entry 会生成不同的 chunkhash 值
+
+ContentHash： 根据文件内容来定义 hash ，文件内容不变，则 contenthash 不变
+
+### js 的文件指纹设置
+
+设置 output 的 filename ，使用 [chunkhash]
+
+```js
+output: {
+  filename: '[name][chunkhash:8].js',
+  path: __dirname + '/dist'
+}
+```
+
+CSS 的文件指纹设置和图片的文件指纹设置直接查看 PPT 相关章节。
+
 
 # 浏览器内核及其 CSS 前缀
 
