@@ -347,6 +347,41 @@ output: {
 
 CSS 的文件指纹设置和图片的文件指纹设置直接查看 PPT 相关章节。
 
+## 代码压缩
+
+### CSS 压缩
+
+```js
+npm i optimize-css-assets-webpack-plugin -D
+// 上面的插件需要 cssnano 配合使用
+npm i cssnano -D
+```
+
+然后在 webpack 配置文件中配置此插件
+
+```
+plugins: [
+    new OptimizeCSSAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano')
+    })
+  ]
+```
+
+### js 压缩
+
+webpack4 中内置了 uglifyjs-webpack-plugin
+
+当配置中的 mode 为 production 时会默认开启 js 文件的压缩
+
+### html 压缩
+
+配置 html-webpack-plugin 
+
+```
+npm i html-webpack-plugin -D
+```
+
 
 # 浏览器内核及其 CSS 前缀
 
