@@ -10,6 +10,8 @@
 
 [第二章](https://github.com/geektime-geekbang/geektime-webpack-course/blob/master/ppt/%E3%80%8A%E7%8E%A9%E8%BD%ACwebpack%E3%80%8B%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.pdf)
 
+[第三章](https://github.com/geektime-geekbang/geektime-webpack-course/blob/master/ppt/%E3%80%8A%E7%8E%A9%E8%BD%ACwebpack%E3%80%8B%20%E7%AC%AC%E4%B8%89%E7%AB%A0.pdf)
+
 # 安装 webpack
 
 ```
@@ -429,3 +431,18 @@ npm i lib-flexible -S
 
 配置 px2rem-loader 的时候，要注意顺序，我这边是写在了 less-loader 前面，否则构建会报错
 
+# 静态资源内联
+
+## HTML 和 JS 内联
+
+通过 raw-loader 完成，最新版有问题，所以先使用 0.5.1 版本
+
+```
+npm i raw-loader@0.5.1 -D
+```
+
+## CSS 内联
+
+方案一： 借助 style-loader
+
+方案二： html-inline-css-webpack-plugin
