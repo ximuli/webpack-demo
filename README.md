@@ -413,3 +413,19 @@ npm i postcss-loader autoprefixer -D
 ```
 
 然后配置 postcss-loader
+
+配置 postcss-loader 的时候，要注意顺序，我这边是写在了 less-loader 前面，否则构建会报错
+
+# CSS px 自动转换为 rem
+
+* 使用 px2rem-loader
+* 使用手淘的 lib-flexible 库，页面渲染时计算根元素的 font-size 值
+
+```
+npm i px2rem-loader -D
+
+npm i lib-flexible -S
+```
+
+配置 px2rem-loader 的时候，要注意顺序，我这边是写在了 less-loader 前面，否则构建会报错
+
