@@ -446,3 +446,14 @@ npm i raw-loader@0.5.1 -D
 方案一： 借助 style-loader
 
 方案二： html-inline-css-webpack-plugin
+
+# 多页面应用打包通用方案
+
+动态获取 entry 和设置 html-webpack-plugin 数量
+
+利用 glob.sync
+
+```
+npm i glob -D
+```
+

@@ -1,17 +1,54 @@
 'use strict';
 
+const glob = require('glob');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+// 设置多页面打包
+const setMPA = () => {
+  const entry = {};
+  const htmlWebpackPlugins = [];
+  
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'))
+  Object.keys(entryFiles)
+    .map((index) => {
+      const entryFile = entryFiles[index];
+      const match = entryFile.match(/src\/(.*)\/index\.js/);
+      const pageName = match && match[1];
+      entry[pageName] = entryFile;
+      htmlWebpackPlugins.push(
+        new HtmlWebpackPlugin({
+          template: path.join(__dirname, `src/${pageName}/index.html`),
+          filename: `${pageName}.html`,
+          chunks: [pageName],
+          inject: true,
+          minify: {
+            html5: true,
+            collapseWhitespace: true,
+            preserveLineBreaks: false,
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: false
+          }
+        })
+      );
+    })
+
+  // '/Users/lijingwei/Documents/myProject/webpack-demo/src/index/index.js'
+  return {
+    entry,
+    htmlWebpackPlugins
+  }
+}
+
+const { entry, htmlWebpackPlugins } = setMPA();
+
 module.exports = {
   // entry 在单入口时是一个字符串，多入口（多页应用）时是一个对象
-  entry: {
-    index: './src/index.js',
-    search: './src/search.js'
-  },
+  entry: entry,
   /* 
     output 用来告诉 webpack 如何将编译后的文件输出到磁盘
     单入口时 output 的 filename 可以是写死的，多入口时需要用占位符 [name] 来区分
@@ -125,35 +162,7 @@ module.exports = {
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/search.html'),
-      filename: 'search.html',
-      chunks: ['search'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
-      filename: 'index.html',
-      chunks: ['index'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
     // 自动清理构建目录产物
     new CleanWebpackPlugin()
-  ]
+  ].concat(htmlWebpackPlugins)
 }
