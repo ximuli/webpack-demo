@@ -4,6 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // entry 在单入口时是一个字符串，多入口（多页应用）时是一个对象
@@ -133,6 +134,8 @@ module.exports = {
         minifyJS: true,
         removeComments: false
       }
-    })
+    }),
+    // 自动清理构建目录产物
+    new CleanWebpackPlugin()
   ]
 }

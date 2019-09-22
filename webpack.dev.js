@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // entry 在单入口时是一个字符串，多入口（多页应用）时是一个对象
@@ -77,7 +78,9 @@ module.exports = {
   */
   plugins: [
     // 此插件配合 devServer 的配置达成热更新效果
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    // 自动清理构建目录产物
+    new CleanWebpackPlugin()
   ],
   devServer: {
     contentBase: './dist',
