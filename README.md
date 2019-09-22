@@ -392,8 +392,9 @@ npm i html-webpack-plugin -D
 npm i clean-webpack-plugin -D
 ```
 
+# PostCSS 插件 autoprefixer 自动补齐 CSS3 前缀
 
-# 浏览器内核及其 CSS 前缀
+## 浏览器内核及其 CSS 前缀
 
 IE Trident（-ms）
 
@@ -402,3 +403,13 @@ Mozilla Geko （-moz）
 Chrome Webkit （-webkit）
 
 Opera Presto （-o）
+
+## autoprefixer
+
+与 less 和 sass 不同， autoprefixer 属于后置处理
+
+```
+npm i postcss-loader autoprefixer -D
+```
+
+然后配置 postcss-loader

@@ -52,6 +52,17 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          // 配置 autoprefixer
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                require('autoprefixer')({
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
+                })
+              ]
+            }
+          },
           'less-loader'
         ]
       },
