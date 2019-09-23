@@ -457,3 +457,6 @@ npm i raw-loader@0.5.1 -D
 npm i glob -D
 ```
 
+# 使用 sourcemap
+
+在开发环境下开启 sourcemap 可以方便调试
